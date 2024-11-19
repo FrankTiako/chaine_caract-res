@@ -1,0 +1,1 @@
+# chaine_caract-res
