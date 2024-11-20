@@ -79,21 +79,40 @@ void inverse(char* dest){
     
     while(*(dest+i) != '\0'){
         i++;
-
     }
     i = i-1;
     std::cout << i;
-    while(i >= 0){
-        a = *(dest+j);
-        std::cout << a;
-        b = *(dest+i);
-        std::cout << b << std::endl;
-        *(dest+i) = a;  
-        *(dest+j) = b;
+    if(i%2 == 0){
+        while(f == 0){
+            if(i-j == 2)
+                f++;
+            a = *(dest+j);
+            std::cout << a;
+            b = *(dest+i);
+            std::cout << b << std::endl;
+            *(dest+i) = a;  
+            *(dest+j) = b;     
+            i--;
+            j++;
+            
+        }
         
-        i--;
-        j++;
+    }else{
+        while(f == 0){
+            if(i-j == 1)
+                f = 1;
+            a = *(dest+j);
+            std::cout << a;
+            b = *(dest+i);
+            std::cout << b << std::endl;
+            *(dest+i) = a;  
+            *(dest+j) = b;     
+            i--;
+            j++;
+            
+        }
     }
+    
     
 }
 void to_upper(char* chaine){
@@ -122,6 +141,8 @@ char *cherche_mot(const char* phrase, const char* mot){
     int r = 0;
     int j = 0, i = 0;
 
+    char t;
+
     
 
     while(*(phrase+i) != '\0'){
@@ -134,8 +155,9 @@ char *cherche_mot(const char* phrase, const char* mot){
             r = longueur(mot);
             if(f == r){
                 char* debut = new char[r];
-                for(int s = 0; s <=r ; s++){
-                    *(debut+s) = *(phrase+j+s);
+                for(int s = 0; s < r ; s++){
+                    t = *(phrase+j+s);
+                    debut[s] = t;
                 }
                 return debut;
             }
@@ -149,8 +171,9 @@ char *cherche_mot(const char* phrase, const char* mot){
             r = longueur(mot);
             if(f == r){
                 char* debut = new char[r];
-                for(int s = 0; s <=r ; s++){
-                    *(debut+s) = *(phrase+j+s);
+                for(int s = 0; s < r ; s++){
+                    t = *(phrase+j+s);
+                    debut[s] = t;
                 }
                 return debut;
             }
@@ -163,11 +186,11 @@ void sous_chaine(const char* source, char* dest, int debut, int longueur){
     int i = debut-1, t = 0;
 
     char a;
-    while(*(source+i) != '\0' || t <= longueur){
+
+    for(i = debut-1 ; t < longueur; i++){
         a = *(source+i);
         *(dest+t) = a; 
         t++;
-        i++;
         if(*(source+i) != '\0'){
             *(dest+t) = '\0';
         }
